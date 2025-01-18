@@ -1,14 +1,13 @@
 import sys
-from PyQt5.QtWidgets import QApplication, QFrame,QMainWindow, QLabel, QDesktopWidget, QHBoxLayout,QStackedWidget,QVBoxLayout
-from PyQt5.QtCore import Qt,QSize, QTimer
-from PyQt5.QtGui import QMovie,QColor,QPixmap
+from PyQt5.QtWidgets import QApplication,QMainWindow, QDesktopWidget,QStackedWidget
+from PyQt5.QtCore import QTimer
+from PyQt5.QtGui import QFontDatabase,QFont
 
 from pages.login import LoginPage
 from pages.dashboard import DashboardPage
-from pages.notification import Notification
-from utils.utils import notification_status
+from components.notification import Notification
 
-from PyQt5.QtWidgets import QGraphicsDropShadowEffect
+
 
 
 class MyApp(QMainWindow):
@@ -21,6 +20,17 @@ class MyApp(QMainWindow):
         self.setStyleSheet("background-color: #1d2633")
 
 
+        font_path = "fonts/font.ttf"  
+        font_id = QFontDatabase.addApplicationFont(font_path)
+
+        if font_id != -1:
+            font_family = QFontDatabase.applicationFontFamilies(font_id)[0]
+            font = QFont(font_family)
+            font.setPointSize(12) 
+            QApplication.setFont(font)
+        else:
+            print("Fontni yuklashda xato yuz berdi")
+
         self.stacked_widget = QStackedWidget(self)
 
 
@@ -28,7 +38,7 @@ class MyApp(QMainWindow):
         self.dashboard_page = DashboardPage()
 
         self.stacked_widget.addWidget(self.login_page)
-        self.stacked_widget.addWidget(self.dashboard_page)
+        self.stacked_widget.addWidget(self.dashboard_page)  
         
         self.setCentralWidget(self.stacked_widget)
 
@@ -48,7 +58,7 @@ class MyApp(QMainWindow):
 
     def show_notification(self):
         self.notification.show_notification()
-        QTimer.singleShot(3000, self.hide_notification)
+        QTimer.singleShot(10000, self.hide_notification)
 
 
 if __name__ == "__main__":

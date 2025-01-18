@@ -1,7 +1,6 @@
-from PyQt5.QtWidgets import QApplication, QWidget, QLabel, QLineEdit, QVBoxLayout, QHBoxLayout
-from PyQt5.QtCore import Qt, QSize,QTimer
-from PyQt5.QtGui import QMovie
-from utils.utils import notification_status
+from PyQt5.QtWidgets import  QWidget, QLabel, QLineEdit, QVBoxLayout, QHBoxLayout
+from PyQt5.QtCore import Qt, QSize
+from PyQt5.QtGui import QMovie,QFont
 
 
 
@@ -47,6 +46,11 @@ class LoginPage(QWidget):
         login_layout.setAlignment(Qt.AlignCenter)
         self.setLayout(login_layout)
 
+        buttonFont = QFont()
+        buttonFont.setPointSize(12)
+        buttonFont.setWeight(QFont.Bold) 
+
+        self.button.setFont(buttonFont)
         
        
        
@@ -65,19 +69,17 @@ class LoginPage(QWidget):
 
         if username == "admin":
             if password == "admin":
-                self.parent.notification.set_message("Successfully", "#1b9c85", "success")
+                self.parent.notification.set_message("Successfully", "message", "#1b9c85", "success")
                 self.parent.show_notification()
                 
             else:
                 pass
-                # self.error_label.setText("Password xato!")  # Show password error
-                # self.error_label.show()
+               
         else:
-            self.parent.notification.set_message("Username and Password uncorrect", "#ff0060", "error")
+            self.parent.notification.set_message("Error", "Login yoki Parol xato!", "#ff0060", "error")
             self.parent.show_notification()
         self.gif.stop()
         self.button.setText("Sign in")
 
-            # self.error_label.setText("Username xato!")  # Show username error
-            # self.error_label.show()
+        
 
