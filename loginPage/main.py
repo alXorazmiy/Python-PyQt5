@@ -20,7 +20,7 @@ class MyApp(QMainWindow):
         self.setStyleSheet("background-color: #1d2633")
 
 
-        font_path = "fonts/font.ttf"  
+        font_path = "fonts/Montserrat-Regular.ttf"  
         font_id = QFontDatabase.addApplicationFont(font_path)
 
         if font_id != -1:

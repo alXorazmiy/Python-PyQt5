@@ -69,8 +69,10 @@ class LoginPage(QWidget):
 
         if username == "admin":
             if password == "admin":
-                self.parent.notification.set_message("Successfully", "message", "#1b9c85", "success")
+                self.parent.notification.set_message("Successfully", "Xush Kelibsiz!", "#1b9c85", "success")
                 self.parent.show_notification()
+                self.username_textfield.setText("")
+                self.password_textfield.setText("")
                 
             else:
                 pass
